@@ -1,0 +1,23 @@
+# ninja log v5
+2	1423	7072070641536993	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1424	1571	7072070642968780	EmoProject.exe	1312c9270e89c43
+7	457	7072019775194395	CMakeFiles/EmoProject.dir/svm.cpp.obj	aae33d466c4bbde1
+8	468	7072213444173293	CMakeFiles/EmoProject.dir/svm.cpp.obj	aae33d466c4bbde1
+4	1425	7072213453752051	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1426	2510	7072213455074780	EmoProject.exe	c575f2a44a657693
+4	1393	7072217021118960	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1394	2251	7072217022433453	EmoProject.exe	c575f2a44a657693
+3	1504	7072288983230492	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1505	2616	7072288984629507	EmoProject.exe	c575f2a44a657693
+4	1529	7072297399378520	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1530	2465	7072297400812607	EmoProject.exe	c575f2a44a657693
+5	1276	7072297803963205	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1276	2039	7072297805142880	EmoProject.exe	c575f2a44a657693
+3	1252	7072298145331789	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1252	2064	7072298146491913	EmoProject.exe	c575f2a44a657693
+3	1273	7072300298828533	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1273	2043	7072300299986272	EmoProject.exe	c575f2a44a657693
+4	1439	7072301891446997	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1440	2196	7072301892597440	EmoProject.exe	c575f2a44a657693
+3	1269	7072303180085960	CMakeFiles/EmoProject.dir/main.cpp.obj	36364d0ffab9c70a
+1269	2026	7072303181231173	EmoProject.exe	c575f2a44a657693

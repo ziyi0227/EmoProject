@@ -1,0 +1,10 @@
+"D:\CLion 2023.1.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/CLion 2023.1.3/bin/ninja/win/x64/ninja.exe" -DCMAKE_TOOLCHAIN_FILE=D:\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake -G Ninja -S D:\clion\EmoProject -B D:\clion\EmoProject\cmake-build-debug
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_TOOLCHAIN_FILE
+
+
+-- Build files have been written to: D:/clion/EmoProject/cmake-build-debug
