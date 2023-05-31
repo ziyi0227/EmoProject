@@ -166,9 +166,9 @@ int main() {
         }
     }
     printf("0 samples: %d, 1 samples: %d, 2 samples: %d\n", Count0, Count1, Count2); // 打印统计结果
-    rate0 = Count0 / (Count0 + Count1 + Count2);
-    rate1 = Count1 / (Count0 + Count1 + Count2);
-    rate2 = Count2 / (Count0 + Count1 + Count2);
+    rate0 = Count0 / (Count0 + Count1 + Count2)*1.0;
+    rate1 = Count1 / (Count0 + Count1 + Count2)*1.0;
+    rate2 = Count2 / (Count0 + Count1 + Count2)*1.0;
     printf("0 rates: %lf, 1 rates: %lf, 1 rates: %lf\n", rate0, rate1, rate2); //打印比率
 
 //    /*查询系统2.0*/
