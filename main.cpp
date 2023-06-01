@@ -88,7 +88,7 @@ int main() {
     param.svm_type = C_SVC;
     param.kernel_type = RBF;
 //    param.gamma = 2;  //迭代次数特别大
-    param.gamma = 0.01;
+    param.gamma = 0.06;
     param.C = 1;
 
     //设置权重条件，用于处理类别不平衡问题
