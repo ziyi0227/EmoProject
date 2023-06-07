@@ -81,15 +81,25 @@ int main() {
         test_prob.x[i][j].index = -1;
     }
 
-    printf("进入训练");
-
     //训练模型
+
+    //LIBSVM是一种流行的支持向量机（SVM）模型训练软件包。
+    //param.svm_type是LIBSVM库中使用的一个参数，该库是一种流行的支持向量机（SVM）模型训练软件包。
     svm_parameter param{};//SVM参数
-    param.svm_type = C_SVC;
+    param.svm_type = C_SVC;//param.svm_type是LIBSVM库中使用的一个参数。
+    // C-SVC：这是用于分类问题的标准SVM，其目标是找到将数据分成两个类的超平面。参数C控制最大化间隔和最小化分类误差之间的权衡。
     param.kernel_type = RBF;
-//    param.gamma = 2;  //迭代次数特别大
+    // 该参数指定SVM使用的内核类型，这里设定为径向基函数（RBF）内核。
+    // RBF内核是一种常用的SVM内核函数，它可以将数据映射到高维空间，并计算样本之间的相似度。
+    // 使用RBF内核的SVM可以有效地处理非线性分类问题，因为它可以捕捉到数据在高维空间中的非线性结构，从而提高分类的准确性。
     param.gamma = 0.06;
+    // 控制着支持向量机在高维空间中对数据进行映射时，不同样本之间的相似度程度。
+    // 具体来说，gamma值越大，相似度下降得越快，决策边界就越复杂，模型的训练误差会减小，但过度拟合的风险也就越大。
+    // 通常情况下，gamma的取值范围在0到1之间。如果数据集很大，可以尝试使用较小的gamma值，以便更好地处理噪声和不必要的特征。
+    // 相反，如果数据集较小并且具有明显的特征，可以尝试使用较大的gamma值，以获得更好的分类效果。
     param.C = 1;
+    // 该参数是SVM中的一个正则化参数，控制着SVM学习分类边界的平滑度和正确分类的权重。
+    // 具体来说，C值越大，SVM的分类边界越复杂，对训练集的拟合程度越高，但过度拟合的风险也就越大。
 
     //设置权重条件，用于处理类别不平衡问题
     int num_positive_labels = count(train_label.begin(), train_label.end(), 1);
@@ -100,11 +110,13 @@ int main() {
     param.weight_label = new int[2] {1, -1};
     param.weight = new double[2] {positive_weight, negative_weight};
 
+    printf("进入训练");
     svm_problem* prob_ptr = &train_prob;
     svm_check_parameter(prob_ptr, &param); // 检查参数是否合法
     svm_model* model = svm_train(prob_ptr, &param);
-
-    printf("进入测试");
+    printf("训练完成\n");
+    printf("-----------------------------------------------------------------------------------------------");
+    printf("进入测试\n");
 
     //测试模型
     int correct = 0;
@@ -114,8 +126,8 @@ int main() {
             correct++;
         }
     }
-    double accuracy = (double)correct / test_prob.l; // 计算分类准确率
-    cout << "Accuracy = " << accuracy << endl;
+    double accuracy = (double)correct *100.0/ test_prob.l; // 计算分类准确率
+    cout << "Accuracy = " << accuracy <<"%"<< endl;
 
     /**
      * optimization finished, #iter = 10000000
@@ -130,7 +142,6 @@ int main() {
      * 发现的支持向量数为28，边界支持向量数（即具有非零拉格朗日乘子的支持向量）为3。总支持向量数，包括不在边界上的支持向量，为95。
      */
 
-
     /*查询系统1.0*/
     //读取文件
     while (getline(emo_file, line)) {
@@ -143,10 +154,10 @@ int main() {
             sample[index] = value;
             index++;
         }
-    // int label;
-    // iss >> label;
+        // int label;
+        // iss >> label;
         emo_data.push_back(sample); //情绪特征存储在train_data中
-    // train_label.push_back(label); //情绪情况存储在train_data中
+        // train_label.push_back(label); //情绪情况存储在train_data中
     }
     emo_file.close();
 
@@ -166,7 +177,7 @@ int main() {
 
     //结果输出
     int Count0 = 0, Count1 = 0, Count2 = 0;
-    double rate0, rate1, rate2;
+    double rate0 = 0, rate1 = 0, rate2 = 0;
     for (int i = 0; i < emo_prob.l; i++) {
         double pred_label = svm_predict(model, emo_prob.x[i]); // 对测试样本进行分类
         printf("Emo sample %d: Predicted label = %g\n", i, pred_label); // 打印预测结果和真实标签
@@ -178,11 +189,14 @@ int main() {
             Count2++;
         }
     }
-    printf("0 samples: %d, 1 samples: %d, 2 samples: %d\n", Count0, Count1, Count2); // 打印统计结果
-    rate0 = Count0 / (Count0 + Count1 + Count2)*1.0;
-    rate1 = Count1 / (Count0 + Count1 + Count2)*1.0;
-    rate2 = Count2 / (Count0 + Count1 + Count2)*1.0;
-    printf("0 rates: %lf, 1 rates: %lf, 1 rates: %lf\n", rate0, rate1, rate2); //打印比率
+    printf("打印统计结果\n");
+    printf(" 0 samples: %d个\n 1 samples: %d个\n 2 samples: %d个\n", Count0, Count1, Count2); // 打印统计结果
+    int Count = Count0 + Count1 + Count2;
+    rate0 = Count0 *100.0/ Count;
+    rate1 = Count1 *100.0/ Count;
+    rate2 = Count2 *100.0/ Count;
+    printf("打印比率");
+    printf("0 rates: %lf%, 1 rates: %lf%, 1 rates: %lf%\n", rate0, rate1, rate2); //打印比率
 
 //    /*查询系统2.0*/
 //    //窗口
